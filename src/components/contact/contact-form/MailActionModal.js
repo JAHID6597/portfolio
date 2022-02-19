@@ -17,9 +17,15 @@ const style = {
 
 const MailActionModal = ({ isSuccessMailSent }) => {
 	useEffect(() => {
+		const mailActionLottie = document.querySelector("#mailActionLottie");
+		mailActionLottie.textContent = '';
+
+		let animationData = successLottie;
+		if(!isSuccessMailSent) animationData = warningLottie;
+
 		lottie.loadAnimation({
-			container: document.querySelector("#mailActionLottie"),
-			animationData: isSuccessMailSent ? successLottie : warningLottie
+			container: mailActionLottie,
+			animationData
 		});
 	}, [isSuccessMailSent]);
 

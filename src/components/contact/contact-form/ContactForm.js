@@ -1,10 +1,11 @@
 import React, { useState, useRef } from "react";
-import { Box, Button, TextField, Typography } from "@mui/material";
+import { Box, Button, Modal, TextField, Typography } from "@mui/material";
 import emailjs from "@emailjs/browser";
 import MailActionModal from "./MailActionModal";
 
 const ContactForm = () => {
 	const [isModalopen, setModalOpen] = useState(false);
+	const [isSuccessMailSent, setSuccessMailSent] = useState(false);
 	const contactFormRef = useRef(null);
 
 	const sendEmail = (e) => {
@@ -21,8 +22,12 @@ const ContactForm = () => {
 				(result) => {
 					contactFormRef.current.reset();
 					setModalOpen(true);
+					setSuccessMailSent(true);
 				},
-				(error) => setModalOpen(true)
+				(error) => {
+					setModalOpen(true);
+					setSuccessMailSent(false);
+				}
 			);
 	};
 
@@ -104,12 +109,18 @@ const ContactForm = () => {
 								Send Message
 							</Button>
 						</form>
+
 						{isModalopen && (
-							<MailActionModal
-								isModalopen={isModalopen}
-								setModalOpen={setModalOpen}
-							/>
+							<Modal
+								open={isModalopen}
+								onClose={() => setModalOpen((isModalopen) => !isModalopen)}
+								aria-labelledby="mailActionLottie"
+								aria-describedby="modal-modal-description"
+							>
+								<MailActionModal isSuccessMailSent={isSuccessMailSent} />
+							</Modal>
 						)}
+
 					</Box>
 				</Box>
 			</Box>

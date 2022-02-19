@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Box, Typography, Modal } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import lottie from "lottie-web";
 import successLottie from "../../../assets/lottie/success-lottie.json";
 import warningLottie from "../../../assets/lottie/warning-lottie.json";
@@ -15,33 +15,23 @@ const style = {
 	p: 4
 };
 
-const MailActionModal = ({ isModalopen, setModalOpen }) => {
+const MailActionModal = ({ isSuccessMailSent }) => {
 	useEffect(() => {
 		lottie.loadAnimation({
 			container: document.querySelector("#mailActionLottie"),
-			animationData: isModalopen ? successLottie : warningLottie
+			animationData: isSuccessMailSent ? successLottie : warningLottie
 		});
-	}, [isModalopen]);
+	}, [isSuccessMailSent]);
 
 	return (
-		<Modal
-			open={isModalopen}
-			onClose={() => setModalOpen(false)}
-			aria-labelledby="mailActionLottie"
-			aria-describedby="modal-modal-description"
-		>
-			<Box sx={style}>
-				<Box id="mailActionLottie" />
-				<Typography
-					id="modal-modal-description"
-					sx={{ textAlign: "center" }}
-				>
-					{isModalopen
-						? "Message sent successfully."
-						: "Message failed to send."}
-				</Typography>
-			</Box>
-		</Modal>
+		<Box sx={style}>
+			<Box id="mailActionLottie" />
+
+			<Typography id="modal-modal-description" sx={{ textAlign: "center" }}>
+				{ isSuccessMailSent ? "Message sent successfully." : "Message failed to send."}
+			</Typography>
+
+		</Box>
 	);
 };
 

@@ -2,6 +2,7 @@ import html from '../../../assets/svg/html-5.svg';
 import css3 from '../../../assets/svg/css3.svg';
 import javascript from '../../../assets/svg/javascript.svg';
 import reactjs from '../../../assets/svg/reactjs.svg';
+import redux from '../../../assets/svg/redux.svg';
 import nodejs from '../../../assets/svg/nodejs.svg';
 import cpp from '../../../assets/svg/c++.svg';
 import python from '../../../assets/svg/python.svg';
@@ -19,6 +20,7 @@ export const skillItemData = [
     {img: css3, name: 'CSS3'},
     {img: javascript, name: 'JAVASCRIPT'},
     {img: reactjs, name: 'REACTJS'},
+    {img: redux, name: 'REDUX'},
     {img: nodejs, name: 'NODEJS'},
     {img: cpp, name: 'C++'},
     {img: python, name: 'PYTHON'},
